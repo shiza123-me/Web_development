@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name – Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+</head>
+<body>
+  <header id="navbar">
+    <div class="logo">YourName</div>
+    <nav class="nav-links">
+      <a href="#home" class="nav-item nav-active">Home</a>
+      <a href="#about" class="nav-item">About</a>
+      <a href="#projects" class="nav-item">Projects</a>
+      <a href="#contact" class="nav-item">Contact</a>
+    </nav>
+    <div class="toggler"><i class="fas fa-bars"></i></div>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-text">
+      <h1>I'm Your Name</h1>
+      <p>Web Developer | React & UI/UX Enthusiast</p>
+      <a href="#projects" class="btn">See My Work</a>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <p>Front‑end developer with experience in React, HTML, CSS, JavaScript, and modern web design.</p>
+  </section>
+
+  <section id="projects" class="projects">
+    <h2>My Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3>React Blog App</h3>
+        <p>SPA using React + React Router, deployed live.</p>
+      </div>
+      <div class="project-card">
+        <h3>eCommerce UI</h3>
+        <p>Product layout with filtering and API integration.</p>
+      </div>
+      <!-- Add more project cards -->
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <form id="form">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn">Send</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 Your Name</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Num</title>
+</head>
+<body>
+    <h1 id="h1">Lets Play</h1>
+    <div id="div"></div>
+</body>
+<script>
+let selectNum=prompt("Enter no.");
+let num= Math.floor(Math.random() * 10) + 1;
+let res;
+if(selectNum==num){
+console.log("YOU ARE CORRECT");
+res="correct";
+}
+if(selectNum>num){
+    console.log("To High")
+    res="To High";
+}
+else if(selectNum<num){
+console.log("To Low")
+res="To Low"
+}
+
+let final=document.getElementById("div");
+final.textContent= "final:"  +res;
+
+</script>
+</html>

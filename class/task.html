@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Website</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <nav>
+      <h2 class="logo">Portfolio</h2>
+      <ul class="nav-links">
+        <li><a href="#about">About me</a></li>
+        <li><a href="#works">My Works</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="about-text">
+      <h2>About <span>me</span></h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vulputate libero at velit interdum, 
+        ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+      </p>
+      <a href="#" class="btn">Read More</a>
+    </div>
+    <div class="about-img">
+      <img src="about-illustration.png" alt="About Illustration">
+    </div>
+  </section>
+
+  <!-- Works Section -->
+  <section id="works" class="works">
+    <h2>My recent <span>works</span></h2>
+    <div class="filter-buttons">
+      <button class="active" onclick="filterWorks('all')">All</button>
+      <button onclick="filterWorks('ui')">UI</button>
+      <button onclick="filterWorks('ux')">UX</button>
+      <button onclick="filterWorks('web')">Web Design</button>
+    </div>
+    <div class="work-gallery">
+      <div class="work-card ui"><img src="work1.png" alt="Work 1"></div>
+      <div class="work-card ux"><img src="work2.png" alt="Work 2"></div>
+      <div class="work-card web"><img src="work3.png" alt="Work 3"></div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="contact-text">
+      <h2>Got a project in <span>mind?</span></h2>
+    </div>
+    <form class="contact-form">
+      <div class="form-group">
+        <input type="text" placeholder="Your name" required>
+        <input type="email" placeholder="Your email" required>
+      </div>
+      <textarea placeholder="Your message" required></textarea>
+      <button type="submit" class="btn">Send Message <i class="fa fa-paper-plane"></i></button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <ul class="footer-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About me</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+  </footer>
+
+</body>
+</html>

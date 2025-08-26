@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Checker</title>
+</head>
+<body>
+  <h1 id="ageDisplay">Your Age is</h1>
+</body>
+<script>
+ let age = prompt("What is your age?");
+    alert("Hello, " + age + "!");
+
+    if (age >= 18) {
+      console.log("Adult");
+    } else {
+      console.log("Not Adult");
+    }
+
+    // ✅ Fix: Correct ID selector and element setup
+    let Age = document.getElementById('ageDisplay');
+    Age.textContent = "Your age is: " + age;
+
+</script>
+
+</html>

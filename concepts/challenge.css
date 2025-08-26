@@ -1,0 +1,78 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+body {
+  height: 100vh;
+  background: linear-gradient(to bottom, #000033, #000080, #003366);
+}
+
+#div{
+    display: flex;
+  justify-content: space-between;
+    position: relative;
+    height: 50px;
+    width: 100%;
+    padding: 2px;
+    gap: 3px;
+    background-color:#003366;
+    color: white;
+    top: 20px;
+    border-radius: 10px;
+}
+i {
+  vertical-align: middle;  /* Align icon with text */
+  top: 15px;
+  position: relative;
+  gap: 3px;
+  color: red;
+  left: 10px;
+}
+#exten{
+    top: 11px;
+    position: relative;
+    left: -315px;
+}
+#sett{
+    color: white;
+    left: -15px;
+    position: relative;
+}
+#nav{
+    width: 60%;                /* Navbar width (not full page) */
+  margin: 20px auto; 
+  border-radius: 25px;
+}
+#Nav2{
+  display: flex;
+justify-content: space-evenly;
+height: 50px;
+    width: 100%;
+    margin: 5px;
+    margin-top: 5px;
+}
+#h4{
+  color: white;
+padding:10px ;
+}
+#btn{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+#btn1{
+  border-radius: 20px;
+  background-color: #003366;
+  color: white;
+  height: 50px;
+  width: 90px;
+}
+#btn1:hover{
+  background-color: red;
+}
+#content1{
+  height: 150px;
+  width: 250px;
+  background-color: #babacc;
+  color: white;
+}

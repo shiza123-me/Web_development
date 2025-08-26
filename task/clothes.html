@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HA Fabrics | Premium Clothing Brand</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        #logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+        }
+        #name {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 2.8rem;
+            color: #d4af37;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #d4af37;
+            --accent: #8b4513;
+            --light: #f8f8f8;
+            --dark: #222;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 16px;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--secondary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .cart-icon {
+            background-color: var(--secondary);
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent);
+            color: white;
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Page Content */
+        .page {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            flex: 1;
+        }
+        
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Products Section */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            font-size: 36px;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            gap: 20px;
+        }
+        
+        .category-btn {
+            padding: 12px 25px;
+            background: white;
+            border: 2px solid var(--secondary);
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-btn.active, .category-btn:hover {
+            background: var(--secondary);
+            color: var(--primary);
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .product {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .product:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .product-img {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            background-color: #f8f8f8;
+            display: block;
+        }
+        
+        .product-content {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .product-price {
+            font-size: 22px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .product-desc {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        /* Checkout Section */
+        .checkout-container {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .checkout-summary {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .checkout-form {
+            flex: 2;
+            min-width: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cart-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: var(--accent);
+            font-weight: 700;
+        }
+        
+        .cart-item-remove {
+            color: #ff0000;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .cart-total {
+            font-size: 24px;
+            font-weight: 700;
+            text-align: right;
+            margin-top: 20px;
+            color: var(--accent);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        /* About Section */
+        .about {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin: 60px 0;
+            flex-wrap: wrap;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-content {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 0;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        
+        .footer-section p {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Cart Preview Modal */
+        .cart-preview-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .cart-preview-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .cart-preview-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        .cart-preview-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .cart-preview-price {
+            font-size: 20px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .cart-preview-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .checkout-container {
+                flex-direction: column;
+            }
+            
+            .category-filter {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .brand {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            #name {
+                left: 0;
+                margin-top: 10px;
+            }
+            
+            .cart-preview-content {
+                padding: 20px;
+                width: 95%;
+            }
+            
+            .cart-preview-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="brand">
+                    <img id="logo" src="./logo.jpeg" alt="logo">
+                    <p id="name">HA Fabrics</p>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home" class="nav-link active" data-page="home">Home</a></li>
+                        <li><a href="#products" class="nav-link" data-page="products">Products</a></li>
+                       
+                    </ul>
+                </nav>
+                <div class="cart-icon" id="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Elevate Your Style with HA Fabrics</h1>
+                    <p>Premium quality clothing that combines traditional craftsmanship with contemporary design</p>
+                    <a href="#products" class="btn nav-link" data-page="products">Shop Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="products">
+                <div class="product">
+                    <span class="product-badge">Popular</span>
+                    <img src="./img17.jpeg" alt="Woman's Formal Suit" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Woman's Premium Suit</h3>
+                        <p class="product-price">Rs. 3500</p>
+                    <p class="product-desc">Lightweight printed lawn suit perfect for summer.</p>
+                   
+                    </div>
+                </div>
+                
+                <div class="product">
+                    <img src="./img2.jpeg" alt="Women's Dress" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Women's Elegant Dress</h3>
+                        <p class="product-price">Rs. 3500</p>
+                        <p class="product-desc">Beautiful dress with intricate embroidery and comfortable fit.</p>
+                   
+                    </div>
+                </div>
+                
+                <div class="product">
+                    <span class="product-badge">New</span>
+                    <img src="./img4.jpeg" alt="Traditional Outfit" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Traditional Khaadi Suit</h3>
+                        <p class="product-price">Rs. 3500</p>
+                        <p class="product-desc">Elegant traditional wear with handcrafted embroidery details.</p>
+                      
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="container">
+            <div class="about">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="About HA Fabrics">
+                </div>
+                <div class="about-content">
+                    <h2>About HA Fabrics</h2>
+                    <p>HA Fabrics is a premium clothing brand that combines traditional craftsmanship with contemporary designs. Inspired by the elegance of Loki Nashat, we create clothing that makes you stand out.</p>
+                    <p>Our mission is to provide high-quality, stylish clothing that celebrates our cultural heritage while embracing modern fashion trends.</p>
+                    <a href="#products" class="btn nav-link" data-page="products" style="margin-top: 20px;">Explore Collection</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Products Page -->
+    <div id="products" class="page">
+        <div class="container">
+            <h2 class="section-title">Our Collection</h2>
+            
+            <!-- Category Filter -->
+            <div class="category-filter">
+    <button class="category-btn active" data-category="all">All Products</button>
+    <button class="category-btn" data-category="lawn">Lawn Collection</button>
+    <button class="category-btn" data-category="linen">Linen Collection</button>
+</div>
+
+            
+            <div class="products">
+                <!-- Lawn Collection -->
+                <div class="product" data-category="lawn">
+                    <span class="product-badge">Lawn</span>
+                    <img src="./img1.jpeg" alt="Lawn Suit 1" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Floral Lawn Suit</h3>
+                        <p class="product-price">Rs. 4000</p>
+                        <p class="product-desc">Beautiful floral print lawn suit with embroidered details.</p>
+                        
+                    </div>
+                </div>
+                
+                <div class="product" data-category="lawn">
+                    <span class="product-badge">Lawn</span>
+                    <img src="./img10.jpeg" alt="Lawn Suit 2" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Embroidered Lawn Suit</h3>
+                        <p class="product-price">Rs. 4000</p>
+                        <p class="product-desc">Elegant lawn suit with intricate hand embroidery work.</p>
+                        
+                    </div>
+                </div>
+                
+                <div class="product" data-category="lawn">
+                    <span class="product-badge">Lawn</span>
+                    <img src="./img11.jpeg" alt="Lawn Suit 3" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Printed Lawn Suit</h3>
+                        <p class="product-price">Rs. 4000</p>
+                        <p class="product-desc">Lightweight printed lawn suit perfect for summer.</p>
+                       
+                    </div>
+                </div>
+                 <div class="product" data-category="lawn">
+                    <span class="product-badge">Lawn</span>
+                    <img src="./img12.jpeg" alt="Lawn Suit 3" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Printed Lawn Suit</h3>
+                        <p class="product-price">Rs. 4000</p>
+                        <p class="product-desc">Lightweight printed lawn suit perfect for summer.</p>
+                       
+                    </div>
+                </div>
+                 <div class="product" data-category="lawn">
+                    <span class="product-badge">Lawn</span>
+                    <img src="./img13.jpeg" alt="Lawn Suit 3" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Printed Lawn Suit</h3>
+                        <p class="product-price">Rs. 4000</p>
+                        <p class="product-desc">Lightweight printed lawn suit perfect for summer.</p>
+                        
+                    </div>
+                </div>
+                 <div class="product" data-category="lawn">
+                    <span class="product-badge">Lawn</span>
+                    <img src="./img14.jpeg" alt="Lawn Suit 3" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Printed Lawn Suit</h3>
+                        <p class="product-price">Rs. 3500</p>
+                        <p class="product-desc">Lightweight printed lawn suit perfect for summer.</p>
+                 
+                    </div>
+                </div>
+                 <div class="product" data-category="lawn">
+                    <span class="product-badge">Lawn</span>
+                    <img src="./img15.jpeg" alt="Lawn Suit 3" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Printed Lawn Suit</h3>
+                        <p class="product-price">Rs. 3500</p>
+                        <p class="product-desc">Lightweight printed lawn suit perfect for summer.</p>
+                       
+                    </div>
+                </div>
+                 <div class="product" data-category="lawn">
+                    <span class="product-badge">Lawn</span>
+                    <img src="./img16.jpeg" alt="Lawn Suit 3" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Printed Lawn Suit</h3>
+                        <p class="product-price">Rs. 3500</p>
+                        <p class="product-desc">Lightweight printed lawn suit perfect for summer.</p>
+                       
+                    </div>
+                </div>
+                 <div class="product" data-category="lawn">
+                    <span class="product-badge">Lawn</span>
+                    <img src="./img17.jpeg" alt="Lawn Suit 3" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Printed Lawn Suit</h3>
+                        <p class="product-price">Rs. 3500</p>
+                        <p class="product-desc">Lightweight printed lawn suit perfect for summer.</p>
+                   
+                    </div>
+                </div>
+                 <div class="product" data-category="lawn">
+                    <span class="product-badge">Lawn</span>
+                    <img src="./img2.jpeg" alt="Lawn Suit 3" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Printed Lawn Suit</h3>
+                        <p class="product-price">Rs. 4000</p>
+                        <p class="product-desc">Lightweight printed lawn suit perfect for summer.</p>
+                      
+                    </div>
+                </div>
+                 <div class="product" data-category="lawn">
+                    <span class="product-badge">Lawn</span>
+                    <img src="./img3.jpeg" alt="Lawn Suit 3" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Printed Lawn Suit</h3>
+                        <p class="product-price">Rs. 4000</p>
+                        <p class="product-desc">Lightweight printed lawn suit perfect for summer.</p>
+                      
+                    </div>
+                </div>
+                 <div class="product" data-category="lawn">
+                    <span class="product-badge">Lawn</span>
+                    <img src="./img4.jpeg" alt="Lawn Suit 3" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Printed Lawn Suit</h3>
+                        <p class="product-price">Rs. 3500</p>
+                        <p class="product-desc">Lightweight printed lawn suit perfect for summer.</p>
+                      
+                    </div>
+                </div>
+                 <div class="product" data-category="lawn">
+                    <span class="product-badge">Lawn</span>
+                    <img src="./img5.jpeg" alt="Lawn Suit 3" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Printed Lawn Suit</h3>
+                        <p class="product-price">Rs. 3500</p>
+                        <p class="product-desc">Lightweight printed lawn suit perfect for summer.</p>
+                      
+                    </div>
+                </div>
+                 <div class="product" data-category="lawn">
+                    <span class="product-badge">Lawn</span>
+                    <img src="./img6.jpeg" alt="Lawn Suit 3" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Printed Lawn Suit</h3>
+                        <p class="product-price">Rs. 3500</p>
+                        <p class="product-desc">Lightweight printed lawn suit perfect for summer.</p>
+                      
+                    </div>
+                </div>
+                 <div class="product" data-category="lawn">
+                    <span class="product-badge">Lawn</span>
+                    <img src="./img7.jpeg" alt="Lawn Suit 3" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Printed Lawn Suit</h3>
+                        <p class="product-price">Rs. 3500</p>
+                        <p class="product-desc">Lightweight printed lawn suit perfect for summer.</p>
+                      
+                    </div>
+                </div>
+                 <div class="product" data-category="lawn">
+                    <span class="product-badge">Lawn</span>
+                    <img src="./img8.jpeg" alt="Lawn Suit 3" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Printed Lawn Suit</h3>
+                        <p class="product-price">Rs. 3500</p>
+                        <p class="product-desc">Lightweight printed lawn suit perfect for summer.</p>
+                      
+                    </div>
+                </div>
+                 <div class="product" data-category="lawn">
+                    <span class="product-badge">Lawn</span>
+                    <img src="./img9.jpeg" alt="Lawn Suit 3" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">Printed Lawn Suit</h3>
+                        <p class="product-price">Rs. 3500</p>
+                        <p class="product-desc">Lightweight printed lawn suit perfect for summer.</p>
+                     
+                    </div>
+                </div>
+                <!-- Leelan Collection -->
+         <div class="product" data-category="linen"> <span class="product-badge">Linen</span>
+             <img src="./lelan1.jpeg" alt="Linen Suit 3" class="product-img"> 
+             <div class="product-content"> <h3 class="product-title">Designer linen Suit</h3>
+                 <p class="product-price">Rs. 4000</p> <p class="product-desc">Contemporary designer linen suit for special occasions.</p> 
+                </div> 
+            </div> 
+  <div class="product" data-category="linen"> <span class="product-badge">Linen</span>
+             <img src="./linen3.jpeg" alt="Linen Suit 3" class="product-img"> 
+             <div class="product-content"> <h3 class="product-title">Designer linen Suit</h3>
+                 <p class="product-price">Rs. 4000</p> <p class="product-desc">Contemporary designer linen suit for special occasions.</p> 
+                </div> 
+            </div> 
+
+
+            <div class="product" data-category="linen"> <span class="product-badge">linen </span>
+                 <img src="./leelan2.jpeg" alt= "linen Suit 3" class="product-img"> <div class="product-content"> 
+                    <h3 class="product-title">Designer linen Suit</h3> <p class="product-price">Rs. 4000</p> 
+                    <p class="product-desc">Contemporary designer linen suit for special occasions.</p> 
+            </div> 
+        </div> 
+    </div> 
+</div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About HA Fabrics</h3>
+                    <p>We are a premium clothing brand that combines traditional craftsmanship with contemporary designs to create unique fashion statements.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home" class="nav-link" data-page="home">Home</a></li>
+                        <li><a href="#products" class="nav-link" data-page="products">Products</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Rail bazar street # 4, sabri centre second floor.</p>
+                    <p><i class="fas fa-phone"></i> 03068837096</p>
+                    <p><i class="fas fa-envelope"></i> asady2363@gmail.com</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 HA Fabrics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+<script>
+    // Navigation between pages
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetPage = this.getAttribute('data-page');
+            
+            // Update active link
+            document.querySelectorAll('.nav-link').forEach(navLink => {
+                navLink.classList.remove('active');
+            });
+            this.classList.add('active');
+            
+            // Show target page
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(targetPage).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        });
+    });
+
+    // ✅ Fixed Category Filter
+    document.querySelectorAll('.category-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const category = this.getAttribute('data-category').trim().toLowerCase();
+            
+            // Update active button
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            this.classList.add('active');
+            
+            // Filter products
+            document.querySelectorAll('.product').forEach(product => {
+                const productCategory = product.getAttribute('data-category').trim().toLowerCase();
+                
+                if (category === 'all' || productCategory === category) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

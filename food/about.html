@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | DelishBites</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    /* General Styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #fffaf4;
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      background-color: #ff5722;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Pacifico', cursive;
+      font-size: 2rem;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active {
+      color: #ffe0b2;
+      border-bottom: 2px solid #fff;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 50vh;
+      background: url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      animation: fadeInDown 1s ease;
+    }
+
+    .hero-content h2 {
+      font-size: 3rem;
+    }
+
+    /* About Section */
+    .about-section {
+      padding: 3rem 2rem;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .about-section h3 {
+      color: #ff5722;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .about-section p {
+      font-size: 1.1rem;
+      color: #444;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    /* Reviews Section */
+    .reviews-section {
+      background-color: #fff8f0;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .reviews-section h3 {
+      color: #ff5722;
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .review-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .review-card {
+      background: white;
+      padding: 1.5rem;
+      border-left: 4px solid #ff9800;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .review-card p {
+      font-style: italic;
+      color: #555;
+    }
+
+    .review-card span {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #e65100;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">DelishBites</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2>About Us</h2>
+    </div>
+  </section>
+
+  <section class="about-section">
+    <h3>Who We Are</h3>
+    <p>
+      DelishBites started in 2020 with one goal: to bring fresh, flavorful meals to your table with speed and love.
+    </p>
+
+    <h3>Where to Find Us</h3>
+    <p>
+      We're proudly serving foodies across Faisalabad, Lahore, Karachi, Islamabad, and Multan.
+    </p>
+  </section>
+
+  <!-- ✅ Customer Reviews Section Added -->
+  <section class="reviews-section">
+    <h3>What Our Customers Say</h3>
+    <div class="review-cards">
+      <div class="review-card">
+        <p>"DelishBites never disappoints! The taste and quality are always amazing!"</p>
+        <span>– Aiman, Lahore</span>
+      </div>
+      <div class="review-card">
+        <p>"I love their Biryani and Zinger Burger. Fast service and fresh food!"</p>
+        <span>– Bilal,Faisalabad</span>
+      </div>
+      <div class="review-card">
+        <p>"Super friendly staff and cozy environment. We love visiting!"</p>
+        <span>– Zara, Islamabad</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 DelishBites. All rights reserved.</p>
+  </footer>
+</body>
+</html>
